@@ -52,7 +52,7 @@ public class PromotionDAO extends ADAO implements IPromotionDAO {
 			connection = openConnection();
 			connection.setAutoCommit(false);
 			
-			IPersonneDAO personneDAO= new PersonneDAO();
+			IPersonneDAO personneDAO= PersonneDAO.getInstance();
 			PersonneDTO personneDTO = new PersonneDTO();
 			personneDTO.setPromotionDTO(dtoToDelete);
 			

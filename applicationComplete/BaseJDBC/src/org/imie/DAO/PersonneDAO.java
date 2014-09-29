@@ -18,6 +18,21 @@ import org.imie.exception.ImieException;
 
 public class PersonneDAO extends ADAO implements IPersonneDAO {
 
+	private static PersonneDAO personneDAO;
+	
+	private PersonneDAO() {
+		
+	}
+	
+	public static synchronized PersonneDAO getInstance(){
+		if (personneDAO==null){
+			personneDAO= new PersonneDAO();
+		}
+		return personneDAO;
+		
+	}
+	
+	
 	/*
 	 * (non-Javadoc)
 	 * 

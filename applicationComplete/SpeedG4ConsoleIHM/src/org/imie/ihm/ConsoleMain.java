@@ -1,4 +1,4 @@
-package org.imie;
+package org.imie.ihm;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -6,20 +6,18 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-import org.imie.DAO.IPersonneDAO;
-import org.imie.DAO.IPromotionDAO;
-import org.imie.DAO.PersonneDAO;
-import org.imie.DAO.PromotionDAO;
 import org.imie.DTO.PersonneDTO;
 import org.imie.DTO.PromotionDTO;
 import org.imie.exception.ImieException;
+import org.imie.service.EcoleService;
+import org.imie.service.IEcoleService;
 
-public class TPJDBC {
+public class ConsoleMain {
 
 	public static void main(String[] args) {
-
-		IPersonneDAO personneDao = PersonneDAO.getInstance();
-		IPromotionDAO promotionDao = new PromotionDAO();
+		// IPersonneDAO personneDao = PersonneDAO.getInstance();
+		// IPromotionDAO promotionDao = new PromotionDAO();
+		IEcoleService ecoleService = new EcoleService();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Scanner scanner = new Scanner(System.in);
 		Boolean endApp = false;
@@ -50,87 +48,40 @@ public class TPJDBC {
 					Integer deletedLines;
 					switch (menu) {
 					case 1:
-						dtos = personneDao.findAll();
+						dtos = ecoleService.getAllPersonne();
 						displayListPersonne(dtos, simpleDateFormat);
 						break;
 
 					case 2:
-						PersonneDTO personneToInsert = typePersonne(scanner,
-								simpleDateFormat);
-						PersonneDTO personneInserted = personneDao
-								.insert(personneToInsert);
-						displayPersonne(personneInserted, simpleDateFormat);
-						System.out.format("personne insérée avec l'id %d\n",
-								personneInserted.getId());
+
 						break;
 
 					case 3:
-						dtos = personneDao.findAll();
-						displayListPersonne(dtos, simpleDateFormat);
-						System.out.println("saisir une personne à supprimer");
-						saisie = scanner.nextLine();
-						lineNumber = Integer.valueOf(saisie);
-						selectedPersonne = dtos.get(lineNumber - 1);
-						deletedLines = personneDao.delete(selectedPersonne);
-						System.out.format("%d lignes supprimée(s)\n",
-								deletedLines);
+
 						break;
 
 					case 4:
-						dtos = personneDao.findAll();
-						displayListPersonne(dtos, simpleDateFormat);
-						System.out.println("saisir une personne à modifier");
-						saisie = scanner.nextLine();
-						lineNumber = Integer.valueOf(saisie);
-						selectedPersonne = dtos.get(lineNumber - 1);
 
-						PersonneDTO personneToUpdate = typePersonne(scanner,
-								simpleDateFormat);
-						selectedPersonne.setNom(personneToUpdate.getNom());
-						selectedPersonne
-								.setPrenom(personneToUpdate.getPrenom());
-						selectedPersonne.setDateNaiss(personneToUpdate
-								.getDateNaiss());
-
-						PersonneDTO personneUpdated = personneDao
-								.update(selectedPersonne);
-						displayPersonne(personneUpdated, simpleDateFormat);
 						break;
 
 					case 5:
-						System.out.println("saisir une personne à rechercher");
-						PersonneDTO personneToSearch = typePersonne(scanner,
-								simpleDateFormat);
-						List<PersonneDTO> presonnesFinded = personneDao
-								.findByDTO(personneToSearch);
-						displayListPersonne(presonnesFinded, simpleDateFormat);
+
 						break;
 
 					case 6:
 
-						promotionDTOs = promotionDao.findByDTO(new PromotionDTO());
-						displayListPromotion(promotionDTOs, simpleDateFormat);
-						System.out.println("saisir une promotion à supprimer");
-						saisie = scanner.nextLine();
-						lineNumber = Integer.valueOf(saisie);
-						selectedPromotion = promotionDTOs.get(lineNumber - 1);
-						deletedLines = promotionDao.delete(selectedPromotion);
-						System.out.format("%d lignes supprimée(s)\n",
-								deletedLines);
 						break;
 
 					default:
 						break;
 					}
 				}
-			} catch (ImieException e) {
+			} catch (Exception e) {
 				System.out.println(e.getMessage());
-				if (e.getCause()!=null){
+				if (e.getCause() != null) {
 					System.out.println("-> ".concat(e.getCause().getMessage()));
 				}
-			} catch (NumberFormatException e) {
-				System.out.println("Menu erroné");
-			}
+			} 
 		}
 
 	}
@@ -229,4 +180,5 @@ public class TPJDBC {
 						personneDTO.getPromotionDTO() == null ? ""
 								: personneDTO.getPromotionDTO().getLibelle());
 	}
+
 }
