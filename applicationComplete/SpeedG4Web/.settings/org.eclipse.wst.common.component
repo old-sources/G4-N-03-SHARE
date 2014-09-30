@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="SpeedG4Web">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <dependent-module archiveName="SpeedG4Persitance.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/SpeedG4Persitance/SpeedG4Persitance">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SpeedG4IPersistance.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/SpeedG4IPersistance/SpeedG4IPersistance">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SpeedG4Service.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/SpeedG4Service/SpeedG4Service">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SpeedG4Launcher.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/SpeedG4Launcher/SpeedG4Launcher">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SpeedG4Transverse.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/SpeedG4Transverse/SpeedG4Transverse">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SpeedG4IService.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/SpeedG4IService/SpeedG4IService">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SpeedG4ITransverse.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/SpeedG4ITransverse/SpeedG4ITransverse">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SpeedG4Model.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/SpeedG4Model/SpeedG4Model">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SpeedG4ConsoleIHM.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/SpeedG4ConsoleIHM/SpeedG4ConsoleIHM">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SpeedG4IIHM.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/SpeedG4IIHM/SpeedG4IIHM">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="postgresql-9.3-1101.jdbc41.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/imie/DEV/lib/postgresql-9.3-1101.jdbc41.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="SpeedG4Web"/>
+        <property name="java-output-path" value="/SpeedG4Web/build/classes"/>
+    </wb-module>
+</project-modules>
