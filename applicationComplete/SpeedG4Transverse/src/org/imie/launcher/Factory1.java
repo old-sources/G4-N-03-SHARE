@@ -2,7 +2,6 @@ package org.imie.launcher;
 
 import org.imie.DAO.IPersonneDAO;
 import org.imie.DAO.PersonneDAO;
-import org.imie.DTO.PersonneDTO;
 import org.imie.factory.IFactory;
 import org.imie.ihm.ConsoleIHM;
 import org.imie.ihm.IIHM;
