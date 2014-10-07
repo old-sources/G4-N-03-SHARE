@@ -1,4 +1,4 @@
-package org.imie.tp2;
+package org.imie.tp3;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;

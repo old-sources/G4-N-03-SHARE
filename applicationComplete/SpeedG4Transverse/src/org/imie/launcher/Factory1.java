@@ -3,10 +3,10 @@ package org.imie.launcher;
 import org.imie.DAO.IPersonneDAO;
 import org.imie.DAO.PersonneDAO;
 import org.imie.factory.IFactory;
-import org.imie.ihm.ConsoleIHM;
 import org.imie.ihm.IIHM;
 import org.imie.service.EcoleService;
 import org.imie.service.IEcoleService;
+import org.imie.tp3.IHMTP3;
 
 public class Factory1 implements IFactory {
 
@@ -18,7 +18,7 @@ public class Factory1 implements IFactory {
 	@Override
 	public IIHM createIHM() {
 		// TODO Auto-generated method stub
-		return new ConsoleIHM(this);
+		return new IHMTP3(this);
 	}
 
 	@Override
