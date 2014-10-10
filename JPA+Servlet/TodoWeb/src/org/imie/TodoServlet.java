@@ -25,7 +25,7 @@ public class TodoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@PersistenceContext
-	EntityManager entityManager;
+	private EntityManager entityManager;
 
 	@Resource
 	private UserTransaction tx;
@@ -58,6 +58,8 @@ public class TodoServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 
 		if (request.getParameter("creer") != null) {
 			String description = request.getParameter("description");
@@ -93,7 +95,27 @@ public class TodoServlet extends HttpServlet {
 					e1.printStackTrace();
 				}
 			}
+		} else if (request.getParameter("modifier") != null) {
+			try {
+				tx.begin();
+				String idString = request.getParameter("id");
+				Integer id = Integer.valueOf(idString);
+				Todo todoToUpdate = new Todo();
+				todoToUpdate.setId(id);
+				todoToUpdate = entityManager.merge(todoToUpdate);
+				String description = request.getParameter("description");
+				todoToUpdate.setDescription(description);
+				tx.commit();
+			} catch (Exception e) {
+				try {
+					tx.rollback();
+				} catch (IllegalStateException | SecurityException
+						| SystemException e1) {
+					e1.printStackTrace();
+				}
+			}
 		}
+
 		List<Todo> todos = entityManager.createNamedQuery("Todo.findAll")
 				.getResultList();
 		request.setAttribute("todos", todos);

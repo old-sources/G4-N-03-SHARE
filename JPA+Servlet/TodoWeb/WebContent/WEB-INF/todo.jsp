@@ -23,6 +23,8 @@
 			<div>
 				<input type="hidden" name="id" value="<%=todo.getId()%>"/>
 				<input type="submit" name="supprimer" value="supprimer"/>
+				<input type="text" name="description" value="<%=todo.getDescription()%>"/>
+				<input type="submit" name="modifier" value="modifier"/>
 			</div>
 		</form>
 		<%
