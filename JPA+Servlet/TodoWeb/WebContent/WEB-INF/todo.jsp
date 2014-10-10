@@ -10,20 +10,24 @@
 </head>
 <body>
 	<form method="post">
-		<input type="text" name="description">
-		 <input type="submit"
-			value="créer">
+		<input type="text" name="description"> <input type="submit"
+			name="creer" value="créer" />
 	</form>
-	<ul>
+	<div>
 		<%
 			List<Todo> todos = (List<Todo>) request.getAttribute("todos");
 			for (Todo todo : todos) {
 		%>
-
-		<li><%=todo.getDescription()%></li>
+		<form method="post">
+			<div><%=todo.getDescription()%></div>
+			<div>
+				<input type="hidden" name="id" value="<%=todo.getId()%>"/>
+				<input type="submit" name="supprimer" value="supprimer"/>
+			</div>
+		</form>
 		<%
 			}
 		%>
-	</ul>
+	</div>
 </body>
 </html>
