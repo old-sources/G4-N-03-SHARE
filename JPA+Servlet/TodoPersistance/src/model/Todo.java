@@ -9,17 +9,17 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name="\"todo\"")
+@Table(name="todo")
 @NamedQuery(name="Todo.findAll", query="SELECT t FROM Todo t")
 public class Todo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="\"id\"")
+	@Column(name="id")
 	private int id;
 
-	@Column(name="\"description\"")
+	@Column(name="description")
 	private String description;
 
 	public Todo() {

@@ -10,7 +10,8 @@
 </head>
 <body>
 	<form method="post">
-		<input type="text" name="description"> <input type="submit"
+		<input type="text" name="description">
+		 <input type="submit"
 			value="créer">
 	</form>
 	<ul>

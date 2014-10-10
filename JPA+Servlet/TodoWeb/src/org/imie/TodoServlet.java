@@ -1,9 +1,9 @@
 package org.imie;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.ServletException;
@@ -11,6 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.NotSupportedException;
+import javax.transaction.SystemException;
+import javax.transaction.UserTransaction;
 
 import model.Todo;
 
@@ -23,6 +26,9 @@ public class TodoServlet extends HttpServlet {
     
 	@PersistenceContext
 	EntityManager entityManager;
+	
+	@Resource
+ 	private UserTransaction tx ;
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -47,7 +53,25 @@ public class TodoServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		String description = request.getParameter("description");
+		Todo newTodo = new Todo();
+		newTodo.setDescription(description);
+		try {
+			tx.begin();
+			entityManager.persist(newTodo);
+			tx.commit();
+		} catch (Exception e) {
+			try {
+				tx.rollback();
+			} catch (IllegalStateException | SecurityException
+					| SystemException e1) {
+				e1.printStackTrace();
+			}
+		}
+		List<Todo> todos = entityManager.createNamedQuery("Todo.findAll").getResultList();
+		request.setAttribute("todos", todos);
+		request.getRequestDispatcher("WEB-INF/todo.jsp").forward(request, response);
+		
 	}
 
 }
