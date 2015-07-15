@@ -1,0 +1,9 @@
+apply plugin:'java'
+
+repositories{
+	mavenCentral()
+}
+
+dependencies{
+	compile 'javax:javaee-api:7.0'
+}
