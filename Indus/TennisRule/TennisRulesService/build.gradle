@@ -5,6 +5,9 @@ apply plugin:'eclipse'
 
 sourceCompatibility = 1.8
 
+test{
+    outputs.upToDateWhen { false }
+}
 
 repositories{
 	mavenCentral()
