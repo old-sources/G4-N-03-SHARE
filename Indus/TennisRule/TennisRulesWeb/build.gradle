@@ -21,6 +21,8 @@ sourceCompatibility = 1.8
 test{
     outputs.upToDateWhen { false }
 }
+test.ignoreFailures=true
+
 
 repositories {
 	mavenCentral()
