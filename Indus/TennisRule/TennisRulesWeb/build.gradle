@@ -6,14 +6,13 @@ apply plugin:'eclipse'
 apply plugin:'eclipse-wtp'
 apply plugin:'cargo'
 
-def cargoVersion = '1.4.+'
-
 buildscript {
+    def cargoPluginVersion = '1.5.+'
     repositories {
         jcenter()
     }
     dependencies {
-        classpath 'org.gradle.api.plugins:gradle-cargo-plugin:1.5.1'
+        classpath "org.gradle.api.plugins:gradle-cargo-plugin:$cargoPluginVersion"
     }
 }
 
@@ -37,6 +36,7 @@ dependencies {
 	testCompile 'junit:junit:4.+'
 	testCompile 'org.seleniumhq.selenium:selenium-firefox-driver:2.+'
 	testRuntime 'org.seleniumhq.selenium:selenium-support:2.+'
+	def cargoVersion = '1.4.+'
  	cargo "org.codehaus.cargo:cargo-core-uberjar:$cargoVersion",
         "org.codehaus.cargo:cargo-ant:$cargoVersion",
 		"org.wildfly:wildfly-controller-client:8.2.0.Final"
