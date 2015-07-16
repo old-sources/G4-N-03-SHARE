@@ -9,7 +9,7 @@
 <body>
 	<form method="post">
 		<div id="score" style="font-size: 40px">
-			<%=session.getAttribute("score")%>
+			-<%=session.getAttribute("score")%>-
 		</div>
 		<div>
 			<input type="submit" value="Joueur1 marque 1 point" name="joueur1" />
